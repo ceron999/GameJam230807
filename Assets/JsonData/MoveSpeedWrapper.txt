@@ -1,0 +1,29 @@
+{
+	"moveSpeedArr":
+		[
+			{
+				"upgradeStep":0,
+				"upgrafeRate":1.0f
+			},
+			{
+				"upgradeStep":1,
+				"upgrafeRate":1.1f
+			},
+			{
+				"upgradeStep":2,
+				"upgrafeRate":1.2f
+			},
+			{
+				"upgradeStep":3,
+				"upgrafeRate":1.3f
+			},
+			{
+				"upgradeStep":4,
+				"upgrafeRate":1.4f
+			},
+			{
+				"upgradeStep":1,
+				"upgrafeRate":1.5f
+			}
+		]
+}
