@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     public SaveDataClass saveData;
     public UpgradeWrapper upgradeWrapper;
+    public UpgradeWrapper upgradeWrapper2;
     public Sprite[] paperPlaneSpriteArr;
 
     public int planeImgIndex = 1;
@@ -43,10 +44,17 @@ public class GameManager : MonoBehaviour
         SetUpgradeWrapper();
     }
 
+    public void ResetData()
+    {
+        saveData = new SaveDataClass();
+        JsonManager.SaveJson<SaveDataClass>(saveData, "UserData");
+        Debug.Log("ResetSaveData");
+    }
+
     void SetUpgradeWrapper()
     {
-        //upgradeWrapper.manaEfficiencyWrapper = JsonManager.ResourceDataLoad<ManaEfficiencyWrapper>("ManaEfficiencyWrapper");
-        //upgradeWrapper.moveSpeedWrapper = JsonManager.ResourceDataLoad<MoveSpeedWrapper>("MoveSpeedWrapper");
-        //upgradeWrapper.slowDownWrapper = JsonManager.ResourceDataLoad<SlowDownWrapper>("SlowDownWrapper");
+        upgradeWrapper.manaEfficiencyWrapper = JsonManager.ResourceDataLoad<ManaEfficiencyWrapper>("ManaEfficiencyWrapper");
+        upgradeWrapper.moveSpeedWrapper = JsonManager.ResourceDataLoad<MoveSpeedWrapper>("MoveSpeedWrapper");
+        upgradeWrapper.slowDownWrapper = JsonManager.ResourceDataLoad<SlowDownWrapper>("SlowDownWrapper");
     }
 }

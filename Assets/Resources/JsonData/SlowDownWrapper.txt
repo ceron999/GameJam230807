@@ -1,0 +1,35 @@
+{
+	"slowDownArr":
+		[
+			{
+				"upgradeStep":0,
+				"upgrafeRate":0.0,
+				"upgradeMoney":0
+			},
+			{
+				"upgradeStep":1,
+				"upgrafeRate":0.1,
+				"upgradeMoney":1000
+			},
+			{
+				"upgradeStep":2,
+				"upgrafeRate":0.2,
+				"upgradeMoney":2500
+			},
+			{
+				"upgradeStep":3,
+				"upgrafeRate":0.3,
+				"upgradeMoney":5000
+			},
+			{
+				"upgradeStep":4,
+				"upgrafeRate":0.4,
+				"upgradeMoney":7500
+			},
+			{
+				"upgradeStep":5,
+				"upgrafeRate":0.5,
+				"upgradeMoney":10000
+			}
+		]
+}

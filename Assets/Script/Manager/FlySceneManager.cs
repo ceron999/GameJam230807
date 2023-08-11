@@ -208,6 +208,7 @@ public class FlySceneManager : MonoBehaviour
             {
                 //½¸
                 Debug.Log("Shoot");
+                boosterBtn.interactable = true;
                 Vector3 startVector = Angle2Vector();
                 paperPlaneScript.SetPlaneVelocity(startVector);
                 mainCamera.transform.SetParent(fixCameraPos.transform);
@@ -220,11 +221,8 @@ public class FlySceneManager : MonoBehaviour
 
     Vector3 Angle2Vector()
     {
-        Debug.Log("angle: " + angle);
         float xPos = Mathf.Cos(angle * Mathf.Deg2Rad);
         float yPos = Mathf.Sin(angle * Mathf.Deg2Rad);
-        Debug.Log("xPos: " + xPos);
-        Debug.Log("yPos: " + yPos);
         Vector3 direction = new Vector3(xPos, yPos, 0);
 
         return direction;
@@ -259,10 +257,13 @@ public class FlySceneManager : MonoBehaviour
             
             if (boosterGauge > 0)
             {
-                StartEffectSound(0);
-                boosterGauge -= boosterConsumption;
-                boosterBar.fillAmount = boosterGauge / 100;
-                paperPlaneScript.UseBooster();
+                if (!paperPlaneScript.IsMaxSpeed())
+                {
+                    StartEffectSound(0);
+                    boosterGauge -= boosterConsumption;
+                    boosterBar.fillAmount = boosterGauge / 100;
+                    paperPlaneScript.UseBooster();
+                }
             }
             else if (boosterGauge < 0)
             {
@@ -343,9 +344,10 @@ public class FlySceneManager : MonoBehaviour
     void EndGame()
     {
         Vector2 endVector = Vector2.zero;
-        if (paperPlaneScript.ReturnVelocity().x <= 0.1f)
+        if (paperPlaneScript.ReturnVelocity().x <= 0.4f)
         {
             Debug.Log("¼Óµµ0");
+            speedText.text = 0.ToString();
             isGameEnd = true;
             paperPlaneScript.SetPlaneFix(true);
         }

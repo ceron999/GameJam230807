@@ -16,20 +16,21 @@ public class MainSceneManager : MonoBehaviour
 
     public void OnClickStartBtn()
     {
+        GameManager.instance.ResetData();
         SceneManager.LoadScene("TutorialScene");
     }
 
-    public void OnClickLoadBtn()
-    {
-        SceneManager.LoadScene("UpgradeScene");
-    }
+    //public void OnClickLoadBtn()
+    //{
+    //    SceneManager.LoadScene("UpgradeScene");
+    //}
 
     public void OnClickQuitBtn()
     {
         Application.Quit();
     }
 
-    void StartBtnCLickSound()
+    void StartBtnClickSound()
     {
         audioSource.PlayOneShot(SoundManager.instance.StartEffectSound(1));
         Debug.Log(SoundManager.instance.StartEffectSound(1).name);

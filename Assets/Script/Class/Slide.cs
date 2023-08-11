@@ -25,7 +25,6 @@ public class Slide : MonoBehaviour
         Color nowColor = spriteRenderer.color;
         while (nowAlpha<=1)
         {
-            Debug.Log(1);
             nowAlpha += Time.deltaTime * fadeSpeed;
             nowColor.a = nowAlpha;
             spriteRenderer.color = nowColor;

@@ -8,29 +8,33 @@ public class Squirrel : MonoBehaviour
     GameObject proj;
     [SerializeField]
     Rigidbody2D projRigid;
+    [SerializeField]
+    GameObject plane;
 
     [SerializeField]
     float shootSpeed = 10;
     void Start()
     {
+        plane = GameObject.Find("PaperAirPlaneImage");
         StartCoroutine(ShootCoroutine());
     }
 
     IEnumerator ShootCoroutine()
     {
+        Vector3 dist = plane.transform.position - this.transform.position;
         while(true)
         {
-            Collider2D getCol = Physics2D.OverlapCircle(this.transform.position, 3);
-            if(getCol.tag =="Plane")
+            dist = plane.transform.position - this.transform.position;
+            if (dist.magnitude <= 15f)
             {
                 proj.SetActive(true);
-                Vector3 targetVector = getCol.transform.position - this.transform.position;
+                Vector3 targetVector = plane.transform.position - this.transform.position;
                 targetVector.x += 1.5f;
                 projRigid.velocity = targetVector.normalized * shootSpeed;
                 break;
 
             }
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.2f);
         }
     }
 }

@@ -213,6 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proj: {fileID: 7392386708103282093}
   projRigid: {fileID: 635308385020558213}
+  plane: {fileID: 0}
   shootSpeed: 20
 --- !u!61 &4617109235702781394
 BoxCollider2D:
@@ -258,7 +259,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &531751024513163304
 Transform:
   m_ObjectHideFlags: 0
@@ -267,7 +268,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7392386708103282093}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalPosition: {x: 2.1, y: -2.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -314,7 +315,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: a5164b340d7cde44a8fff4e104772301, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -339,9 +340,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -5, y: 5}
   serializedVersion: 2
-  m_Radius: 11.801546
+  m_Radius: 1
 --- !u!50 &635308385020558213
 Rigidbody2D:
   serializedVersion: 4

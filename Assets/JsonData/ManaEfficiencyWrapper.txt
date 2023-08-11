@@ -1,9 +1,0 @@
-{
-	"manaEfficiencyArr":
-		[
-			{
-				"upgradeStep":0,
-				"upgrafeRate":1.0
-			}
-		]
-}

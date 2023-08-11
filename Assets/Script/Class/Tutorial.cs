@@ -42,6 +42,6 @@ public class Tutorial : MonoBehaviour
             spriteRenderer.color = nowColor;
             yield return null;
         }
-        TutorialBtn.interactable = true;
+        UnityEngine.SceneManagement.SceneManager.LoadScene("UpgradeScene");
     }
 }

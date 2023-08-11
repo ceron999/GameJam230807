@@ -10,21 +10,27 @@ public class Rabbit : MonoBehaviour
     Rigidbody2D rigid;
     [SerializeField]
     Animator anim;
+    [SerializeField]
+    GameObject plane;
 
     void Start()
     {
+        plane = GameObject.Find("PaperAirPlaneImage");
         StartCoroutine(JumpCoroutine());
     }
 
     IEnumerator JumpCoroutine()
     {
+        Vector3 dist = plane.transform.position - this.transform.position;
         while (true)
         {
-            Collider2D getCol = Physics2D.OverlapCircle(this.transform.position, 8);
-            if (getCol.tag == "Plane")
+            dist = plane.transform.position - this.transform.position;
+
+            if (dist.magnitude <= 15f)
             {
+                Debug.Log("Rabbit");
                 anim.SetBool("isJump", true);
-                Vector3 targetVector = getCol.transform.position - this.transform.position;
+                Vector3 targetVector = plane.transform.position - this.transform.position + new Vector3(2,0,0);
                 rigid.velocity = targetVector.normalized * jumpSpeed;
                 targetVector = Vector3.down;
                 yield return new WaitForSeconds(2);
@@ -35,7 +41,7 @@ public class Rabbit : MonoBehaviour
                 break;
 
             }
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.2f);
         }
     }
 }

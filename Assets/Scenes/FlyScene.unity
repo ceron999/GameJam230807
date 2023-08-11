@@ -371,8 +371,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116850883}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 202.1169, y: 11.6, z: 0}
-  m_LocalScale: {x: 422.2611, y: 9.025514, z: 1}
+  m_LocalPosition: {x: 202.1169, y: 10.7433, z: 0}
+  m_LocalScale: {x: 422.2611, y: 10.738556, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -653,7 +653,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 167455097}
   m_OnClick:
     m_PersistentCalls:
@@ -1488,12 +1488,13 @@ MonoBehaviour:
   PointText: {fileID: 1334045396}
   boosterBar: {fileID: 1152787468}
   boosterGauge: 100
-  boosterConsumption: 0.5
+  boosterConsumption: 0.25
   angleBtn: {fileID: 437819578}
   angle: 0
   angleSpeed: 90
   isBoosterOn: 0
   isGameEnd: 0
+  isClear: 0
   endPopUpParent: {fileID: 1548270257}
   moveDistanceText: {fileID: 243406722}
   earnMoneyText: {fileID: 1797886898}
@@ -3211,7 +3212,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1175980143}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 202.993, y: 16.74, z: 0}
+  m_LocalPosition: {x: 203.82, y: 13.76, z: 0}
   m_LocalScale: {x: 432.0393, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4334,7 +4335,7 @@ MonoBehaviour:
   planeRigid: {fileID: 1530456152}
   maxSpeed: 20
   planeStartSpeed: 15
-  boosterSpeed: 1
+  boosterSpeed: 2
   nowAngle: 0
   isGameEnd: 0
   isGroundTouch: 0

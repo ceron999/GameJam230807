@@ -19,6 +19,7 @@ public class PaperAirPlane : MonoBehaviour
     [SerializeField] float nowAngle;
 
     Vector3 nowDir;
+    bool isBoost = false;
     bool isSlow = false;
 
     Vector2 angleVector = Vector2.zero;
@@ -84,7 +85,6 @@ public class PaperAirPlane : MonoBehaviour
                 JsonManager.SaveJson<SaveDataClass>(newData, "UserData");
                 Debug.Log("CLear");
                 flySceneManager.isClear = true;
-                flySceneManager.isGameEnd = true;
 
                 planeRigid.gravityScale = 0;
                 nowDir = wizard.transform.position - planeTransform.localPosition;
@@ -118,8 +118,8 @@ public class PaperAirPlane : MonoBehaviour
     void CollideEnemy()
     {
         Debug.Log("Enemy collide");
-        Vector2 slowVector = new Vector3(3f * (1 - nowSlowDown), 0, 0);
-        planeRigid.velocity -= slowVector;
+        Vector2 slowVector = planeRigid.velocity;
+        planeRigid.velocity -= slowVector.normalized * 5;
     }
 
     void WatchMoveDir()
@@ -137,7 +137,6 @@ public class PaperAirPlane : MonoBehaviour
 
     public void SetPlaneVelocity(Vector3 getVec)
     {
-        Debug.Log(getVec);
         planeRigid.velocity = getVec.normalized * planeStartSpeed;
         planeRigid.gravityScale = 0.5f;
     }
@@ -152,11 +151,22 @@ public class PaperAirPlane : MonoBehaviour
 
     public void UseBooster()
     {
-        Debug.Log(planeRigid.velocity.magnitude);
-        //nowDir = planeRigid.velocity.normalized;
-        nowDir = new Vector3(1, 0, 0);
-        if(planeRigid.velocity.magnitude <= maxSpeed)
-            planeRigid.AddForce(nowDir * boosterSpeed, ForceMode2D.Impulse);
+        if (!isBoost)
+        {
+            nowDir = new Vector3(1, 0, 0);
+            if (planeRigid.velocity.magnitude <= maxSpeed)
+            {
+                StartCoroutine(UseBoosterCoroutine());
+                planeRigid.AddForce(nowDir * boosterSpeed, ForceMode2D.Impulse);
+            }
+        }
+    }
+
+    IEnumerator UseBoosterCoroutine()
+    {
+        isBoost = true;
+        yield return new WaitForSeconds(0.2f);
+        isBoost = false;
     }
 
     void SetPlaneSlow()
@@ -172,7 +182,7 @@ public class PaperAirPlane : MonoBehaviour
 
     IEnumerator SetPlaneSlowCoroutine()
     {
-        Vector2 slowVector = new Vector3(0.1f, 0, 0);
+        Vector2 slowVector = new Vector3(1f, 0, 0);
         if(isSlow)
         {
             yield return new WaitForSeconds(0.5f);
@@ -193,7 +203,6 @@ public class PaperAirPlane : MonoBehaviour
         if (nowAngle < 89)
         {
             StartCoroutine(SetMoveAngleUpCoroutine());
-            Debug.Log("up");
         }
     }
 
@@ -219,7 +228,6 @@ public class PaperAirPlane : MonoBehaviour
         if (nowAngle > 1)
         {
             StartCoroutine(SetMoveAngleDownCoroutine());
-            Debug.Log("down");
         }
     }
 

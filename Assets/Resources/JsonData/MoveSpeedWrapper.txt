@@ -1,0 +1,35 @@
+{
+	"moveSpeedArr":
+		[
+			{
+				"upgradeStep":0,
+				"upgrafeRate":1.0,
+				"upgradeMoney":0
+			},
+			{
+				"upgradeStep":1,
+				"upgrafeRate":1.2,
+				"upgradeMoney":1000
+			},
+			{
+				"upgradeStep":2,
+				"upgrafeRate":1.4,
+				"upgradeMoney":2500
+			},
+			{
+				"upgradeStep":3,
+				"upgrafeRate":1.6,
+				"upgradeMoney":5000
+			},
+			{
+				"upgradeStep":4,
+				"upgrafeRate":1.8,
+				"upgradeMoney":7500
+			},
+			{
+				"upgradeStep":5,
+				"upgrafeRate":2.0,
+				"upgradeMoney":10000
+			}
+		]
+}

@@ -15,8 +15,8 @@ public class SaveDataClass
     public SaveDataClass()
     {
         money = 0;
-        manaEfficiencyUpgrade = 1;
-        moveSpeedUpgrade = 1;
+        manaEfficiencyUpgrade = 0;
+        moveSpeedUpgrade = 0;
         slowDownUpgrafe = 0;
         maxPoint = 0;
     }

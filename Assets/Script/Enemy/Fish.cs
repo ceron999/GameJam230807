@@ -11,10 +11,13 @@ public class Fish : MonoBehaviour
     [SerializeField]
     Rigidbody2D nowRigid;
     [SerializeField]
+    GameObject plane;
+    [SerializeField]
     float jumpSpeed;
 
     private void Start()
     {
+        plane = GameObject.Find("PaperAirPlaneImage");
         nowSpriteRenderer = this.GetComponent<SpriteRenderer>();
         nowRigid = this.GetComponent<Rigidbody2D>();
         int index = (int)Random.Range(0f, 1.9f);
@@ -26,17 +29,20 @@ public class Fish : MonoBehaviour
 
     IEnumerator JumpCoroutine()
     {
+        Vector3 dist = plane.transform.position - this.transform.position;
         while (true)
         {
-            Collider2D getCol = Physics2D.OverlapCircle(this.transform.position, 8);
-            if (getCol.tag == "Plane")
+            dist = plane.transform.position - this.transform.position;
+
+            if (dist.magnitude <= 15f)
             {
+                Debug.Log("fish");
                 Vector3 targetVector = Vector3.up;
                 nowRigid.velocity = targetVector.normalized * jumpSpeed;
                 break;
 
             }
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.2f);
         }
     }
 }

@@ -43,12 +43,24 @@ public class UpgradeSceneManager : MonoBehaviour
     AudioSource audioSource;
 
 
+    //데이터
+    int nowUpgradeIndex;
+
+
     private void Start()
     {
+        int[] upgradeIndexArr = new int[3];
+        upgradeIndexArr[0] = GameManager.instance.saveData.manaEfficiencyUpgrade;
+        upgradeIndexArr[1] = GameManager.instance.saveData.moveSpeedUpgrade;
+        upgradeIndexArr[2] = GameManager.instance.saveData.slowDownUpgrafe;
+
         moneyText.text = GameManager.instance.saveData.money.ToString();
-        manaStepText.text = "마나 효율: " + GameManager.instance.saveData.manaEfficiencyUpgrade * 100 + "%";
-        moveStepText.text = "이동 속도: " + GameManager.instance.saveData.moveSpeedUpgrade * 100 + "%";
-        slowStepText.text = "둔화 저항: " + GameManager.instance.saveData.slowDownUpgrafe.ToString() + "%";
+        manaStepText.text = "마나 효율: " + 
+            GameManager.instance.upgradeWrapper.manaEfficiencyWrapper.manaEfficiencyArr[upgradeIndexArr[0]].upgrafeRate * 100 + "%";
+        moveStepText.text = "이동 속도: " +
+            GameManager.instance.upgradeWrapper.moveSpeedWrapper.moveSpeedArr[upgradeIndexArr[1]].upgrafeRate * 100 + "%";
+        slowStepText.text = "둔화 저항: " +
+            GameManager.instance.upgradeWrapper.slowDownWrapper.slowDownArr[upgradeIndexArr[2]].upgrafeRate + "%";
     }
 
     //강화파트
@@ -85,11 +97,17 @@ public class UpgradeSceneManager : MonoBehaviour
                 GameManager.instance.saveData.manaEfficiencyUpgrade++;
                 GameManager.instance.saveData.money -= needMoney;
                 moneyText.text = GameManager.instance.saveData.money.ToString();
-                manaStepText.text = "Mana: " + GameManager.instance.saveData.manaEfficiencyUpgrade.ToString();
-                Debug.Log(GameManager.instance.saveData.manaEfficiencyUpgrade);
+
+                nowUpgradeIndex = GameManager.instance.saveData.manaEfficiencyUpgrade;
+                manaStepText.text = "마나 효율: \n" +
+                    (GameManager.instance.upgradeWrapper.manaEfficiencyWrapper.manaEfficiencyArr[nowUpgradeIndex].upgrafeRate * 100) + "%";
                 JsonManager.SaveJson<SaveDataClass>(GameManager.instance.saveData, "UserData");
+
+                manaPopUpParent.SetActive(false);
             }
         }
+        else
+            manaUpgradeBtn.enabled = false;
     }
     void UpgradeMoveSpeed()
     {
@@ -104,10 +122,17 @@ public class UpgradeSceneManager : MonoBehaviour
                 GameManager.instance.saveData.moveSpeedUpgrade++;
                 GameManager.instance.saveData.money -= needMoney;
                 moneyText.text = GameManager.instance.saveData.money.ToString();
-                moveStepText.text = "Move: " + GameManager.instance.saveData.moveSpeedUpgrade.ToString();
+
+                nowUpgradeIndex = GameManager.instance.saveData.moveSpeedUpgrade;
+                moveStepText.text = "이동 속도: \n" +
+                    (GameManager.instance.upgradeWrapper.moveSpeedWrapper.moveSpeedArr[nowUpgradeIndex].upgrafeRate * 100) + "%";
                 Debug.Log(GameManager.instance.saveData.moveSpeedUpgrade);
                 JsonManager.SaveJson<SaveDataClass>(GameManager.instance.saveData, "UserData");
+
+                movePopUpParent.SetActive(false);
             }
+            else
+                moveUpgradeBtn.enabled = false;
         }
     }
     void UpgradeSlowDown()
@@ -123,10 +148,17 @@ public class UpgradeSceneManager : MonoBehaviour
                 GameManager.instance.saveData.slowDownUpgrafe++;
                 GameManager.instance.saveData.money -= needMoney;
                 moneyText.text = GameManager.instance.saveData.money.ToString();
-                slowStepText.text = "Slow: " + GameManager.instance.saveData.slowDownUpgrafe.ToString();
+
+                nowUpgradeIndex = GameManager.instance.saveData.slowDownUpgrafe;
+                slowStepText.text = "둔화 저항: \n" +
+                    (GameManager.instance.upgradeWrapper.slowDownWrapper.slowDownArr[nowUpgradeIndex].upgrafeRate * 100) + "%";
                 Debug.Log(GameManager.instance.saveData.slowDownUpgrafe);
                 JsonManager.SaveJson<SaveDataClass>(GameManager.instance.saveData, "UserData");
+
+                slowPopUpParent.SetActive(false);
             }
+            else
+                slowUpgradeBtn.enabled = false;
         }
     }
 
